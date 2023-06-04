@@ -2,3 +2,4 @@ En la computadora nueva o reparada:
 1. Abrir explorador de internet e ir a la direccion bit.ly/conectar123
 2. Esperar a que el arhivo se descargue
 3. Dar click en el archivo descargado
+4. Seguir instrucciones hasta que el archivo se haya instalado
