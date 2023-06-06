@@ -8,9 +8,12 @@ powercfg.exe -change -hibernate-timeout-dc 0
 powercfg.exe -change -monitor-timeout-ac 0
 powercfg.exe -change -monitor-timeout-dc 0
 
-# Disable hybrid sleep
-powercfg.exe -change -hibernate-type 0
+# Disable IPv6 protocol
+$regPath = "HKLM:\SYSTEM\CurrentControlSet\Services\Tcpip6\Parameters"
+Set-ItemProperty -Path $regPath -Name "DisabledComponents" -Value 0xffffffff
 
-# Set power plan to High Performance
-$powerPlan = Get-WmiObject -Namespace "root\cimv2\power" -Class Win32_PowerPlan | Where-Object {$_.ElementName -like "*High performance*"}
-powercfg.exe /s $powerPlan.InstanceID
+# Disable IPv6 on network interfaces
+$netAdapter = Get-NetAdapter | Where-Object {$_.InterfaceType -ne "Loopback"}
+$netAdapter | ForEach-Object {
+    Disable-NetAdapterBinding -Name $_.Name -ComponentID ms_tcpip6
+}
