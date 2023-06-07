@@ -40,7 +40,7 @@ for pair in pairs:
     value = value.strip()
 
     # Check the key and assign the value to the corresponding variable
-    if key == "user id":
+    if "user id" in key:
         user_id = value
     elif key == "password":
         password = value
