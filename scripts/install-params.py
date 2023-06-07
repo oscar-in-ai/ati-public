@@ -2,7 +2,7 @@ import os
 import mysql.connector
 
 # File directory
-config_dir = os.path.expandvars('%userprofile%/freelit/mzr/config')
+config_dir = os.path.expandvars('%userprofile%/documents/freelit/mzr/config')
 
 # Find the text file in the config directory
 txt_files = [file for file in os.listdir(config_dir) if file.endswith('.txt')]
