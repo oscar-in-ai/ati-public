@@ -1,15 +1,3 @@
-# Check if Chocolatey is installed
-$chocoInstalled = Get-Command choco -ErrorAction SilentlyContinue
-if (!$chocoInstalled) {
-    Write-Host "Installing Chocolatey..."
-    Set-ExecutionPolicy Bypass -Scope Process -Force
-    iex ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1'))
-}
-
-# Install Git using Chocolatey
-Write-Host "Installing Git..."
-choco install git -y
-
 # Set the paths
 $repoFolder = Join-Path $env:USERPROFILE "repos\ati-public"
 $repoUrl = "https://github.com/oscar-in-ai/ati-public.git"
