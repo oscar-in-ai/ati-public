@@ -16,19 +16,5 @@ $netAdapter | ForEach-Object {
     Disable-NetAdapterBinding -Name $_.Name -ComponentID ms_tcpip6
 }
 
-$NewComputerName = Read-Host -Prompt "Enter the new computer name"
-
-# Set the new computer name
-Rename-Computer -NewName $NewComputerName -Force
-
-$TeamViewerPath = "C:\Program Files (x86)\TeamViewer\TeamViewer.exe" # Modify the path if needed
-
-# Stop TeamViewer service
-Stop-Service -Name TeamViewer -ErrorAction SilentlyContinue
-
-# Set the new PC name
-Start-Process -FilePath $TeamViewerPath -ArgumentList "--alias", "$NewComputerName" -NoNewWindow -Wait
-
-# Start TeamViewer service
-Start-Service -Name TeamViewer
-
+# Enable file extensions in Windows
+Set-ItemProperty -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced" -Name "HideFileExt" -Value 0
