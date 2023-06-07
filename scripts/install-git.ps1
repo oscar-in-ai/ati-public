@@ -1,5 +1,5 @@
 # Set the paths
-$repoFolder = Join-Path $env:USERPROFILE "repos\ati-public"
+$repoFolder = Join-Path $env:USERPROFILE "repos"
 $repoUrl = "https://github.com/oscar-in-ai/ati-public.git"
 
 # Create the repository folder
