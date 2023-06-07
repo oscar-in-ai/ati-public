@@ -14,7 +14,7 @@ New-Item -ItemType Directory -Path $RestorePath -Force
 
 $TerminalNumber = Read-Host -Prompt 'Enter Terminal number'
 $ConfigFilePath = Join-Path -Path $ConfigPath -ChildPath ('{0}.txt' -f $TerminalNumber)
-$ConfigContent = 'user id=;password=;port=3306;server=;database=;persistsecurityinfo=True;convertzerodatetime=True'
+$ConfigContent = 'user id=z1;password=12345678;port=3308;server=192.168.1.2;database=mer1;persistsecurityinfo=True;convertzerodatetime=True'
 
 # Create the config file
 $ConfigContent | Out-File -FilePath $ConfigFilePath -Encoding UTF8
