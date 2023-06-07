@@ -18,8 +18,46 @@ terminal_id = os.path.splitext(txt_files[0])[0]
 with open(file_path, 'r') as file:
     connection_string = file.read().strip()
 
+
+# Split the connection string by semicolon (;) to get individual key-value pairs
+pairs = connection_string.split(";")
+
+# Initialize variables
+user_id = ""
+password = ""
+port = ""
+server = ""
+database = ""
+persistsecurityinfo = ""
+convertzerodatetime = ""
+
+# Iterate over each key-value pair
+for pair in pairs:
+    # Split the pair by equal sign (=) to separate key and value
+    key, value = pair.split("=")
+    # Remove leading/trailing whitespaces from the key and value
+    key = key.strip()
+    value = value.strip()
+
+    # Check the key and assign the value to the corresponding variable
+    if key == "user id":
+        user_id = value
+    elif key == "password":
+        password = value
+    elif key == "port":
+        port = value
+    elif key == "server":
+        server = value
+    elif key == "database":
+        database = value
+    elif key == "persistsecurityinfo":
+        persistsecurityinfo = value
+    elif key == "convertzerodatetime":
+        convertzerodatetime = value
+
+
 # Establish a MySQL connection
-conn = mysql.connector.connect(connection_string)
+conn = mysql.connector.connect(user = user_id, password = password,host =server, database = database,port = port)
 
 # Create a cursor
 cursor = conn.cursor()
