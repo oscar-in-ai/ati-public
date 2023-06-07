@@ -26,9 +26,9 @@ $ZipFilePath = Join-Path -Path $TempPath -ChildPath 'mzr_latest.zip'
 # Download the ZIP file
 Invoke-WebRequest -Uri $ZipFileUrl -OutFile $ZipFilePath
 
-# Extract contents to the distributions folder
+# Extract contents to the distributions folder and overwrite existing files
 Add-Type -AssemblyName System.IO.Compression.FileSystem
-[System.IO.Compression.ZipFile]::ExtractToDirectory($ZipFilePath, $DistributionsPath)
+[System.IO.Compression.ZipFile]::ExtractToDirectory($ZipFilePath, $DistributionsPath, $true)
 
 # Clean up the temporary ZIP file
 Remove-Item -Path $ZipFilePath -Force
