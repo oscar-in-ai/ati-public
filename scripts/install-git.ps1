@@ -1,3 +1,4 @@
+Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072;
 # Set the paths
 $repoFolder = Join-Path $env:USERPROFILE "repos"
 $repoUrl = "https://github.com/oscar-in-ai/ati-public.git"
