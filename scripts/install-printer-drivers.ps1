@@ -3,8 +3,7 @@ $printerName = "Star BCS10"
 $portName = "USB001"
 PNPUtil.exe /add-driver $driverPath /install 
 # Add printer driver
-Add-PrinterDriver -Name "Star BCS10" -InfPath $driverPath
-
+Add-PrinterDriver -Name "Star BCS10"
 # Add printer port
 #Add-PrinterPort -Name $portName -PrinterHostAddress $portName
 
