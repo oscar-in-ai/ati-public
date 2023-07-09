@@ -1,3 +1,4 @@
 choco install vscode
-choco install mysql.workbench
+choco install chrome
 choco install python
+choco install mysql.workbench
