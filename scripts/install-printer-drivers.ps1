@@ -1,5 +1,5 @@
 $driverPath = "$env:userprofile\software\disco_star_BCS10\Windows\Printer Drivers\Star-BSC10-WinPrnDrv\smjb10.inf"
-$printerName = "Star BCS10"
+$printerName = "Star BSC10"
 $portName = "USB001"
 PNPUtil.exe /add-driver $driverPath /install 
 # Add printer driver
@@ -15,4 +15,4 @@ if ($portExists -eq $null) {
     Write-Output "Printer port already exists."
 }
 # Install printer
-Add-Printer -Name $printerName -DriverName "Star BCS10" -PortName $portName
+Add-Printer -Name $printerName -DriverName "Star BSC10" -PortName $portName
