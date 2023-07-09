@@ -6,7 +6,7 @@ $portName = "USB001"
 Add-PrinterDriver -Name "Star BCS10" -InfPath $driverPath
 
 # Add printer port
-Add-PrinterPort -Name $portName -PrinterHostAddress $portName
+#Add-PrinterPort -Name $portName -PrinterHostAddress $portName
 
 # Install printer
-Add-Printer -Name $printerName -DriverName "Star BCS10" -PortName $portName
+#Add-Printer -Name $printerName -DriverName "Star BCS10" -PortName $portName
