@@ -33,3 +33,4 @@ Add-Type -AssemblyName System.IO.Compression.FileSystem
 
 # Clean up the temporary ZIP file
 Remove-Item -Path $ZipFilePath -Force
+Invoke-Item $DistributionsPath
