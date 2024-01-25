@@ -34,3 +34,9 @@ function DownloadAndExtractZipFiles {
 
 CreateSoftwareFolder
 DownloadAndExtractZipFiles
+
+$driverPath1 = "$env:userprofile\software\disco_zebra\Software\ZebraSetupUtilities\Driver\ZBRN\Win64\ZBRN.inf"
+PNPUtil.exe /add-driver $driverPath1 /install 
+
+$driverPath2 = "$env:userprofile\software\disco_star_BCS10\Windows\Printer Drivers\Star-BSC10-WinPrnDrv\smjb10.inf"
+PNPUtil.exe /add-driver $driverPath2 /install 
