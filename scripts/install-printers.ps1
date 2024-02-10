@@ -1,5 +1,6 @@
-# Array of hardcoded zip URLs
-$zipUrls = @(
+# Array of URLs
+$urls = @(
+    "https://www.godexprinters.co.uk/downloads/drivers/Godex_2017.1_M-0.exe",
     "https://ati-s3-public-dist-prd.s3.ap-southeast-2.amazonaws.com/software/disco_star_BCS10.zip",
     "https://ati-s3-public-dist-prd.s3.ap-southeast-2.amazonaws.com/software/disco_zebra.zip"
 )
@@ -12,31 +13,36 @@ function CreateSoftwareFolder {
     }
 }
 
-# Function to download and extract the zip files
-function DownloadAndExtractZipFiles {
+# Function to download and extract the files
+function DownloadAndExtractFiles {
     $tempFolderPath = [System.IO.Path]::GetTempPath()
     $softwareFolderPath = Join-Path -Path $env:USERPROFILE -ChildPath 'software'
 
-    foreach ($url in $zipUrls) {
-        $zipFileName = [System.IO.Path]::GetFileName($url)
-        $downloadPath = Join-Path -Path $tempFolderPath -ChildPath $zipFileName
+    foreach ($url in $urls) {
+        $fileName = Split-Path -Path $url -Leaf
+        $downloadPath = Join-Path -Path $tempFolderPath -ChildPath $fileName
 
-        Write-Host "Downloading $zipFileName..."
+        Write-Host "Downloading $fileName..."
         Invoke-WebRequest -Uri $url -OutFile $downloadPath
 
-        Write-Host "Extracting $zipFileName..."
-        Expand-Archive -Path $downloadPath -DestinationPath $softwareFolderPath
+        if ($fileName -like '*.zip') {
+            Write-Host "Extracting $fileName..."
+            Expand-Archive -Path $downloadPath -DestinationPath $softwareFolderPath
+        } else {
+            Write-Host "Copying $fileName to software folder..."
+            Copy-Item -Path $downloadPath -Destination $softwareFolderPath
+        }
 
-        # Remove the downloaded zip file
+        # Remove the downloaded file
         Remove-Item -Path $downloadPath -Force
     }
 }
 
 CreateSoftwareFolder
-DownloadAndExtractZipFiles
+DownloadAndExtractFiles
 
-$driverPath1 = "$env:userprofile\software\disco_zebra\Software\ZebraSetupUtilities\Driver\ZBRN\Win64\ZBRN.inf"
+$driverPath1 = "$env:USERPROFILE\software\disco_zebra\Software\ZebraSetupUtilities\Driver\ZBRN\Win64\ZBRN.inf"
 PNPUtil.exe /add-driver $driverPath1 /install 
 
-$driverPath2 = "$env:userprofile\software\disco_star_BCS10\Windows\Printer Drivers\Star-BSC10-WinPrnDrv\smjb10.inf"
-PNPUtil.exe /add-driver $driverPath2 /install 
+$driverPath2 = "$env:USERPROFILE\software\disco_star_BCS10\Windows\Printer Drivers\Star-BSC10-WinPrnDrv\smjb10.inf"
+PNPUtil.exe /add-driver $driverPath2 /install
